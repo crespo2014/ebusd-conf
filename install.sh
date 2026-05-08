@@ -6,13 +6,13 @@ apt-get update -y
 
 wget https://github.com/john30/ebusd/releases/download/26.1/ebusd-26.1_amd64-bookworm_mqtt1.deb
 dpkg -i ebusd-26.1_amd64-bookworm_mqtt1.deb
-apt-get update -y
+apt-get update -y 
 apt-get upgrade -y -f
 
 
 ROOT=`pwd`
 
-echo "EBUSD_OPTS="-d enh:ebus-61e9c0:9999 --dump --dumpfile /root/ebusd.raw --scanconfig=full --configpath $ROOT/csv --lograwdata=bytes --mqtthost mosquitto --mqttport 1883 --mqttint $ROOT/mqtt-hassio.cfg  --mqttjson --lograwdatafile=/root/rawdata --lograwdatasize=10240 --latency=10" > /etc/default/ebusd
+echo EBUSD_OPTS=\"-d enh:ebus-61e9c0:9999 --dump --dumpfile /root/ebusd.raw --scanconfig=full --configpath $ROOT/csv --lograwdata=bytes --mqtthost mosquitto --mqttport 1883 --mqttint $ROOT/mqtt-hassio.cfg  --mqttjson --lograwdatafile=/root/rawdata --lograwdatasize=10240 --latency=10\" > /etc/default/ebusd
 
 systemctl enable ebusd
 service ebusd start
